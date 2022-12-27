@@ -35,3 +35,6 @@ Route::get('articles/{id}/edit', [ArticleController::class, 'edit'])
 
 Route::post('articles', [ArticleController::class, 'store'])
     ->name('article.store');
+
+Route::patch('articles/{id}', [ArticleController::class, 'update'])
+    ->name('article.update');
