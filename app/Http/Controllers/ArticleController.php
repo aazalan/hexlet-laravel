@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Article;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $articles = Article::paginate(2);
@@ -14,18 +19,23 @@ class ArticleController extends Controller
         return view('article.index', compact('articles', 'flash'));
     }
 
-    public function show($id)
-    {
-        $article = Article::findOrFail($id);
-        return view('article.show', compact('article'));
-    }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $article = new Article();
         return view('article.create', compact('article'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -41,15 +51,40 @@ class ArticleController extends Controller
             ->route('articles.index');
     }
 
-    public function edit($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::findOrFail($article->id);
+        return view('article.show', compact('article'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Article $article)
+    {
+        $article = Article::findOrFail($article->id);
         return view('article.edit', compact('article'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Article $article)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::findOrFail($article->id);
         $validatedData = $request->validate([
             'name' => 'required|unique:articles,name,' . $article->id,
             'body' => 'required|min:10'
@@ -61,9 +96,15 @@ class ArticleController extends Controller
             ->route('articles.index');
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Article $article)
     {
-        $article = Article::find($id);
+        $article = Article::find($article->id);
         if ($article) {
             $article->delete();
         }
