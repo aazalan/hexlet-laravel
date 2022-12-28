@@ -11,7 +11,7 @@ class ArticleController extends Controller
     {
         $articles = Article::paginate(2);
         $flash = $request->session()->get('status');
-        return view('article.index', ['articles' => $articles, 'flash' => $flash]);
+        return view('article.index', compact('articles', 'flash'));
     }
 
     public function show($id)
@@ -57,6 +57,16 @@ class ArticleController extends Controller
         $request->session()->flash('status', 'Updated successful!');
         $article->fill($validatedData);
         $article->save();
+        return redirect()
+            ->route('articles.index');
+    }
+
+    public function destroy($id)
+    {
+        $article = Article::find($id);
+        if ($article) {
+            $article->delete();
+        }
         return redirect()
             ->route('articles.index');
     }
