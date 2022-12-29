@@ -11,5 +11,5 @@
         <a href="{{ route('articles.destroy', $article) }}" data-confirm="Confirm deleting" data-method="delete" rel="nofollow">Delete</a>
         <div>{{Str::limit($article->body, 200)}}</div>
     @endforeach
-    {{$articles->links()}}
+    <a>{{$articles->links()}}</a>
 @endsection

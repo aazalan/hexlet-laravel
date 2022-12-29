@@ -102,11 +102,18 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Request $request, Article $article)
     {
         $article = Article::find($article->id);
         if ($article) {
-            $article->delete();
+            try {
+                $article->delete();
+            } catch(\Illuminate\Database\QueryException $e) {
+                $request->session()->flash('status', 'Article could not be deleted because has comments!!!');
+                return redirect()
+                    ->route('articles.index');
+            }
+            
         }
         return redirect()
             ->route('articles.index');
