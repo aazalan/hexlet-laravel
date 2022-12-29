@@ -9,28 +9,6 @@ use Illuminate\Http\Request;
 class ArticleCommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Article $article)
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,18 +26,6 @@ class ArticleCommentController extends Controller
 
         return redirect()
             ->route('articles.show', $article);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @param  \App\Models\ArticleComment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Article $article, ArticleComment $comment)
-    {
-        //
     }
 
     /**
