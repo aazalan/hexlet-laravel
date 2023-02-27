@@ -1,5 +1,5 @@
 # Blog
-Website where you can post new articles and add comments. Also articles and comments could be updated or delated.
+Website where you can post new articles and add comments. Also articles and comments could be updated or deleted.
 
 Project designed with Laravel and interaction with database realized using Eloquent ORM.
 
