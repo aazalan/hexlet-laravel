@@ -15,4 +15,4 @@ make start
 ```
 For easier interaction with project I added seeder which will add some articles and comments at the stage of setup.
 
-*Now working at authentication and authorization in this project. Will be updated soon.*
+*Now working on authentication and authorization in this project. Will be updated soon.*
