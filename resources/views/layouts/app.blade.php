@@ -17,6 +17,10 @@
             <a href="{{ route('about') }}">About</a>
             <br>
             <a href="{{ route('articles.index') }}">Articles</a>
+            <br>
+            <a href="{{ route('user.login') }}">Login</a>
+            <br>
+            <a href="{{ route('user.registration') }}">Registration</a>
         </div>
         <div class="container mt-4">
             <h1>@yield('header')</h1>
